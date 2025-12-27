@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mindfullintensions - Your Path to Fitness & Meditation</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- AOS (Animate On Scroll) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Custom Styles & Animations -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap');
+
+        :root {
+            --primary: #6366f1;
+            --secondary: #8b5cf6;
+            --accent: #10b981;
+            --dark: #1f2937;
+            --light: #f9fafb;
+        }
+
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            overflow-x: hidden;
+        }
+
+        /* Custom Animations */
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes pulse-glow {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.8;
+            }
+        }
+
+        @keyframes gradient-shift {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .animate-pulse-glow {
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(-45deg, #6366f1, #8b5cf6, #10b981, #3b82f6);
+            background-size: 400% 400%;
+            animation: gradient-shift 15s ease infinite;
+        }
+
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        .modal.active .modal-content {
+            transform: scale(1);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary);
+        }
+
+        .carousel {
+            border: 2px solid black;
+        }
+
+        .active {
+            color: #4f46e5;
+            font-weight: 500;
+            transition: color 300ms ease;
+        }
+
+        .active:hover {
+            color: #4f46e5;
+        }
+    </style>
+    <title>Mindfullintesnsion - Your Path to Fitness & Meditation</title>
+</head>
+
+<body class="bg-gray-50 text-gray-800">
+    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md shadow-sm">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <div
+                        class="w-10 h-10 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 flex items-center justify-center">
+                        <i class="fas fa-brain text-white text-xl"></i>
+                    </div>
+                    <span
+                        class="text-2xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">Mindfullintensions</span>
+                </div>
+
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html"
+                        class="text-gray-700 hover:text-indigo-600 font-medium transition-colors duration-300">Home</a>
+                    <a href="about.html"
+                        class="text-gray-700 hover:text-indigo-600 font-medium transition-colors duration-300">About
+                        Us</a>
+
+                    <div class="relative group">
+                        <button class="active">
+                            Postures <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                        </button>
+                        <div
+                            class="absolute hidden group-hover:block bg-white shadow-xl rounded-lg p-4 mt-2 min-w-[200px] z-10">
+                            <div class="grid grid-cols-2 gap-2">
+                                <button data-filter="type" class="hover:bg-indigo-50 nav-btn p-2 rounded">By
+                                    Type</button>
+                                <button data-filter="benefit" class="hover:bg-indigo-50 p-2 nav-btn rounded">By
+                                    Benefit</button>
+                                <button data-filter="general"
+                                    class="hover:bg-indigo-50 nav-btn p-2 rounded">General</button>
+                                <button data-filter="Anatomy" class="hover:bg-indigo-50 nav-btn p-2 rounded">By
+                                    Anatomy</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <script>
+                        const button = document.querySelectorAll('.nav-btn')
+                        button.forEach(btn => {
+                            const category = btn.getAttribute('data-filter');
+                            btn.addEventListener('click', () => {
+                                localStorage.setItem('category', category);
+                                window.location.href = "postures.html";
+
+                            });
+                        });
+                    </script>
+
+<a href="/courses.html"
+class="text-gray-700 hover:text-indigo-600 font-medium transition-colors duration-300">Courses</a>
+<a href="/meditation.html"
+class="text-gray-700 hover:text-indigo-600 font-medium transition-colors duration-300">Meditation</a>
+<a href="/books.html"
+class="text-gray-700 hover:text-indigo-600 font-medium transition-colors duration-300">Books</a>
+<a href="/contact.html"
+class="text-gray-700 hover:text-indigo-600 font-medium transition-colors duration-300">Contact</a>
+
+<a href="postures.html" id="btn-btn"
+class="bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-6 py-2 rounded-full font-medium hover:shadow-lg transition-all duration-300 hover:scale-105">
+Explore Poses
+</a>
+</div>
+
+<!-- Mobile Menu Button -->
+<button id="mobile-menu-btn"
+class="md:hidden text-gray-700">
+<i class="fas fa-bars text-2xl"></i>
+</button>
+</div>
+
+<!-- Mobile Menu -->
+<div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
+<div class="flex flex-col space-y-4">
+<a href="/index.html"
+class="text-gray-700 hover:text-indigo-600 font-medium">Home</a>
+<div class="flex flex-col space-y-2">
+<a href="/postures.html">Postures</a>
+<div class="flex flex-wrap gap-2 ml-4">
+    <a href="/postures.html"
+        class="text-sm bg-gray-100 px-3 py-1 rounded-full">By
+        Type</a>
+    <a href="/postures.html"
+        class="text-sm bg-gray-100 px-3 py-1 rounded-full">By
+        Benefit</a>
+    <a href="/postures.html"
+        class="text-sm bg-gray-100 px-3 py-1 rounded-full">General</a>
+    <a href="/postures.html"
+        class="text-sm bg-gray-100 px-3 py-1 rounded-full">By
+        Anatomy</a>
+</div>
+</div>
+<a href="/courses.html"
+class="text-gray-700 hover:text-indigo-600 font-medium">Courses</a>
+<a href="/meditation.html"
+class="text-gray-700 hover:text-indigo-600 font-medium">Meditation</a>
+<a href="/books.html"
+class="text-gray-700 hover:text-indigo-600 font-medium">Books</a>
+<a href="/contact.html"
+class="text-gray-700 hover:text-indigo-600 font-medium">Contact</a>
+<a href="/postures.html"
+class="bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-6 py-2 rounded-full font-medium mt-2">
+Explore Poses
+</a>
+</div>
+</div>
+</div>
+</nav>
+
+    <!-- Hero Section -->
+    <section class="gradient-bg text-white py-16 md:py-24 overflow-hidden">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row items-center">
+                <div class="lg:w-1/2 mb-12 lg:mb-0" data-aos="fade-right">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">Healthy Postures</h1>
+                    <p class="text-xl md:text-2xl mb-8 opacity-90">Your Path to Fitness & Meditation</p>
+                    <p class="text-lg mb-10 max-w-2xl opacity-80">Discover the perfect balance between physical wellness
+                        and mental clarity through our guided yoga postures, meditation courses, and wellness resources.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="/postures.html"
+                            class="bg-white text-indigo-600 px-8 py-3 rounded-full font-semibold hover:shadow-xl transition-all duration-300 hover:scale-105">
+                            Explore Poses
+                    </a>
+                        <a href="/courses.html"
+                            class="bg-transparent border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white/10 transition-all duration-300">
+                            Join a Course
+                </a>
+                    </div>
+                </div>
+                <div class="lg:w-1/2 flex justify-center" data-aos="fade-left">
+                    <div class="relative">
+                        <div
+                            class="w-80 h-80 md:w-96 md:h-96 rounded-full bg-gradient-to-r from-white/10 to-white/5 flex items-center justify-center animate-pulse-glow">
+                            <div
+                                class="w-64 h-64 md:w-80 md:h-80 rounded-full bg-gradient-to-r from-white/20 to-white/10 flex items-center justify-center">
+                                <div
+                                    class="w-48 h-48 md:w-64 md:h-64 rounded-full bg-gradient-to-r from-white/30 to-white/20 flex items-center justify-center animate-float">
+                                    <i class="fas fa-spa text-white text-6xl md:text-8xl"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Floating elements -->
+                        <div class="absolute -top-4 -left-4 w-20 h-20 rounded-full bg-gradient-to-r from-green-400 to-teal-300 opacity-70 animate-float"
+                            style="animation-delay: 0.5s;"></div>
+                        <div class="absolute -bottom-6 -right-6 w-24 h-24 rounded-full bg-gradient-to-r from-purple-400 to-pink-300 opacity-70 animate-float"
+                            style="animation-delay: 1s;"></div>
+                        <div class="absolute top-1/2 -right-10 w-16 h-16 rounded-full bg-gradient-to-r from-yellow-400 to-orange-300 opacity-70 animate-float"
+                            style="animation-delay: 1.5s;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Posture Card 2 -->
+
+    <!-- Postures Section -->
+    <section id="p-section" class="py-16 md:py-24 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Yoga Postures Library</h2>
+                <p class="text-gray-600 max-w-3xl mx-auto">Browse our comprehensive collection of yoga postures
+                    filtered by type, benefit, or anatomy focus.</p>
+            </div>
+
+            <!-- Filter Buttons -->
+            <div class="flex flex-wrap justify-center gap-4 mb-12" data-aos="fade-up">
+                <button class="filter-btn active bg-indigo-600 text-white px-6 py-2 rounded-full font-medium" id="alll"
+                    data-filter="all">All Postures</button>
+                <button
+                    class="filter-btn bg-white text-gray-700 px-6 py-2 rounded-full font-medium shadow hover:shadow-md transition-shadow"
+                    data-filter="type">By Type</button>
+                <button
+                    class="filter-btn bg-white text-gray-700 px-6 py-2 rounded-full font-medium shadow hover:shadow-md transition-shadow"
+                    data-filter="benefit">By Benefit</button>
+                <button
+                    class="filter-btn bg-white text-gray-700 px-6 py-2 rounded-full font-medium shadow hover:shadow-md transition-shadow"
+                    data-filter="general">General</button>
+                <button
+                    class="filter-btn bg-white text-gray-700 px-6 py-2 rounded-full font-medium shadow hover:shadow-md transition-shadow"
+                    data-filter="anatomy">By Anatomy</button>
+            </div>
+
+            <!-- Postures Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Posture Card 1 -->
+                <div class="card-hover bg-white rounded-2xl shadow-lg overflow-hidden posture-card"
+                    data-category="type">
+                    <div
+                    class="h-64 bg-gradient-to-r from-blue-400 to-cyan-400 relative overflow-hidden">
+                    <img class="object-fit h-full w-full"
+                        src="/images/posturesimage/image a.jpg.jpg" alt>
+
+                </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-bold">Mountain Pose</h3>
+                            <span
+                                class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">Standing</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">Foundation for all standing poses, improves posture and
+                            balance.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500"><i class="fas fa-clock mr-1"></i> 2-5 mins</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Posture Card 2 -->
+                <div class="card-hover bg-white rounded-2xl shadow-lg overflow-hidden posture-card"
+                    data-category="anatomy">
+                    <div
+                    class="h-64 bg-gradient-to-r from-blue-400 to-cyan-400 relative overflow-hidden">
+                    <img class="object-fit h-full w-full"
+                        src="/images/posturesimage/image b.jpg.jpg" alt>
+
+                </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-bold">Tree Pose</h3>
+                            <span
+                                class="bg-green-100 text-green-800 text-xs font-medium px-3 py-1 rounded-full">Balance</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">Improves balance, strengthens legs and core, enhances focus.
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500"><i class="fas fa-clock mr-1"></i> 3-5 mins per
+                                side</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-hover bg-white rounded-2xl shadow-lg overflow-hidden posture-card"
+                data-category="anatomy">
+                <div
+                class="h-64 bg-gradient-to-r from-blue-400 to-cyan-400 relative overflow-hidden">
+                <img class="object-fit h-full w-full"
+                    src="/images/posturesimage/image c.jpg.jpg" alt>
+
+            </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-bold">Downward Dog</h3>
+                            <span
+                                class="bg-purple-100 text-purple-800 text-xs font-medium px-3 py-1 rounded-full">Resting</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">Form an upside-down “V” with hands and feet on the ground.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500"><i class="fas fa-clock mr-1"></i> 1-5 mins</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="card-hover bg-white rounded-2xl shadow-lg overflow-hidden posture-card"
+                data-category="anatomy">
+                <div
+                class="h-64 bg-gradient-to-r from-blue-400 to-cyan-400 relative overflow-hidden">
+                <img class="object-fit h-full w-full"
+                    src="/images/posturesimage/image d.jpg.jpg" alt>
+
+            </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-bold">Cobra Pose</h3>
+                            <span
+                                class="bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full">Standing</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">Lie on your stomach and lift your chest to strengthen the spine..</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500"><i class="fas fa-clock mr-1"></i> 2-5 mins</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Posture Card 2 -->
+                <div class="card-hover bg-white rounded-2xl shadow-lg overflow-hidden posture-card"
+                    data-category="anatomy">
+                    <div
+                    class="h-64 bg-gradient-to-r from-blue-400 to-cyan-400 relative overflow-hidden">
+                    <img class="object-fit h-full w-full"
+                        src="/images/posturesimage/image e.jpg.jpg" alt>
+
+                </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-bold">Triangle Pose</h3>
+                            <span
+                                class="bg-green-100 text-green-800 text-xs font-medium px-3 py-1 rounded-full">Balance</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">Stretch sideways with one hand on the ground and the other up.
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500"><i class="fas fa-clock mr-1"></i> 3-5 mins per
+                                side</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Posture Card 3 -->
+                <div class="card-hover bg-white rounded-2xl shadow-lg overflow-hidden posture-card"
+                    data-category="anatomy">
+                    <div
+                    class="h-64 bg-gradient-to-r from-blue-400 to-cyan-400 relative overflow-hidden">
+                    <img class="object-fit h-full w-full"
+                        src="/images/posturesimage/image f.jpg" alt>
+
+                
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-bold">Seated Forward Bend</h3>
+                            <span
+                                class="bg-purple-100 text-purple-800 text-xs font-medium px-3 py-1 rounded-full">Resting</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">Sit and bend forward to touch your feet for a full stretch.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500"><i class="fas fa-clock mr-1"></i> 1-5 mins</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Postures Grid -->
+                <div class="card-hover bg-white rounded-2xl shadow-lg overflow-hidden posture-card"
+                data-category="anatomy">
+                <div
+                class="h-64 bg-gradient-to-r from-blue-400 to-cyan-400 relative overflow-hidden">
+                <img class="object-fit h-full w-full"
+                    src="/images/posturesimage/image g.jpg" alt>
+
+            
+                </div>
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-xl font-bold">Corpse Pose</h3>
+                        <span
+                            class="bg-purple-100 text-purple-800 text-xs font-medium px-3 py-1 rounded-full">Resting</span>
+                    </div>
+                    <p class="text-gray-600 mb-4">Lie flat and completely relax the body for deep rest.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500"><i class="fas fa-clock mr-1"></i> 1-5 mins</span>
+                    </div>
+                </div>
+            </div>
+
+                <!-- Posture Card 2 -->
+                <div class="card-hover bg-white rounded-2xl shadow-lg overflow-hidden posture-card"
+                    data-category="benefit">
+                    <div
+                class="h-64 bg-gradient-to-r from-blue-400 to-cyan-400 relative overflow-hidden">
+                <img class="object-fit h-full w-full"
+                    src="/images/posturesimage/image h.jpg" alt>
+
+            
+                </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-bold">Tree Pose</h3>
+                            <span
+                                class="bg-green-100 text-green-800 text-xs font-medium px-3 py-1 rounded-full">Balance</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">Improves balance, strengthens legs and core, enhances focus.
+                        </p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500"><i class="fas fa-clock mr-1"></i> 3-5 mins per
+                                side</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Posture Card 3 -->
+                <div class="card-hover bg-white rounded-2xl shadow-lg overflow-hidden posture-card"
+                    data-category="general">
+                    <div
+                    class="h-64 bg-gradient-to-r from-blue-400 to-cyan-400 relative overflow-hidden">
+                    <img class="object-fit h-full w-full"
+                        src="/images/posturesimage/image i.jpg" alt>
+    
+                
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-bold">Bridge Pose</h3>
+                            <span
+                                class="bg-purple-100 text-purple-800 text-xs font-medium px-3 py-1 rounded-full">Resting</span>
+                        </div>
+                        <p class="text-gray-600 mb-4">Lie on your back and lift your hips to form a bridge.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500"><i class="fas fa-clock mr-1"></i> 1-5 mins</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <button id="all-btn" data-filter="all"
+                    class="bg-gradient-to-r filter-btn  from-indigo-500 to-purple-500 text-white px-8 py-3 rounded-full font-medium hover:shadow-xl transition-all duration-300 hover:scale-105">
+                    View All Postures
+                </button>
+            </div>f
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Column 1 -->
+                <div>
+                    <div class="flex items-center space-x-2 mb-6">
+                        <div
+                            class="w-10 h-10 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 flex items-center justify-center">
+                            <i class="fas fa-brain text-white"></i>
+                        </div>
+                        <span class="text-2xl font-bold">Mindfullintensions</span>
+                    </div>
+                    <p class="text-gray-400 mb-6">Your path to holistic wellness through yoga, meditation, and
+                        mindful
+                        living.</p>
+                    <div class="flex space-x-4">
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-indigo-600 transition-colors">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-indigo-600 transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-indigo-600 transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-indigo-600 transition-colors">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Column 2 -->
+                <div>
+                    <h4 class="text-lg font-bold mb-6">Quick Links</h4>
+                    <ul class="space-y-3">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white transition-colors">Home</a>
+                        </li>
+                        <li><a href="about.html" class="text-white font-medium transition-colors">About Us</a></li>
+                        <li><a href="/postures.html"
+                                class="text-gray-400 hover:text-white transition-colors">Postures</a></li>
+                        <li><a href="/courses.html"
+                                class="text-gray-400 hover:text-white transition-colors">Courses</a></li>
+                        <li><a href="/meditation.html" class="text-gray-400 hover:text-white transition-colors">Meditation</a></li>
+                        <li><a href="/books.html" class="text-gray-400 hover:text-white transition-colors">Books</a></li>
+                        <li><a href="/contact.html" class="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3 -->
+                <div>
+                    <h4 class="text-lg font-bold mb-6">Resources</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Blog</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Research</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Instructors</a>
+                        </li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Community</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">FAQs</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 4 -->
+                <div>
+                    <h4 class="text-lg font-bold mb-6">Contact Us</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-center">
+                            <i class="fas fa-map-marker-alt text-indigo-400 mr-3"></i>
+                            <span class="text-gray-400">Jut Line Karachi</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone text-indigo-400 mr-3"></i>
+                            <span class="text-gray-400">03482000168</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope text-indigo-400 mr-3"></i>
+                            <span class="text-gray-400">malik-owais-2508d.netlify.app/</span>
+                        </li>
+                    </ul>
+                    <div class="mt-8">
+                        <p class="text-gray-400 mb-3">Subscribe to our newsletter</p>
+                        <div class="flex">
+                            <input type="email" placeholder="xyz@gmail.com"
+                                class="bg-gray-800 text-white px-4 py-2 rounded-l-lg w-full focus:outline-none">
+                            <button
+                                class="bg-gradient-to-r from-indigo-500 to-purple-500 px-4 py-2 rounded-r-lg font-medium">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500 text-sm">
+                <p>&copy; 2025 Mindfullintensions. All rights reserved. Designed By <i
+                        class="fas fa-heart text-red-500 mx-1"></i> Malik Owais.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+
+    <script>
+        let mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        let mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const postureCards = document.querySelectorAll('.posture-card');
+        const allBtn = document.getElementById('all-btn');
+
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                filterButtons.forEach(btn => {
+                    btn.classList.remove('active', 'bg-indigo-600', 'text-white');
+                    btn.classList.add('bg-white', 'text-gray-700', 'shadow');
+allBtn.classList.add('text-white', 'bg-gradient-to-r', 'from-indigo-500', 'to-purple-500');   
+
+                });
+
+                this.classList.remove('bg-white', 'text-gray-700', 'shadow');
+                this.classList.add('active', 'bg-indigo-600', 'text-white');
+
+                var filterValue = this.getAttribute('data-filter');
+
+                postureCards.forEach(card => {
+                    if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                        card.style.display = 'block';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, 10);
+                    } else {
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            card.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+
+        allBtn.addEventListener('click', () => {
+            const all = document.getElementById('alll');
+            all.classList.add('active', 'bg-indigo-600', 'text-white');
+            console.log(all);
+
+        });
+
+
+
+        const category = localStorage.getItem('category');
+        if (category) {
+            document.querySelector(`.filter-btn[data-filter="${category}"]`).click();
+            localStorage.removeItem('category');
+        }
+
+        closeModalBtn.addEventListener('click', function () {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        modal.addEventListener('click', function (e) {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+
+
+    </script>
+
+</html>

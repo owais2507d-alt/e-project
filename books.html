@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mindfullintensions- Your Path to Fitness & Meditation</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- AOS (Animate On Scroll) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom Styles & Animations -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap');
+        
+        :root {
+            --primary: #6366f1;
+            --secondary: #8b5cf6;
+            --accent: #10b981;
+            --dark: #1f2937;
+            --light: #f9fafb;
+        }
+        
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        body {
+            overflow-x: hidden;
+        }
+        
+        /* Custom Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+        
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .animate-pulse-glow {
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(-45deg, #6366f1, #8b5cf6, #10b981, #3b82f6);
+            background-size: 400% 400%;
+            animation: gradient-shift 15s ease infinite;
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary);
+        }
+
+        /* Progress Bar Animation */
+        .progress-bar {
+            height: 6px;
+            border-radius: 3px;
+            overflow: hidden;
+            background-color: #e5e7eb;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            border-radius: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: width 1.5s ease-in-out;
+        }
+
+        /* Timeline */
+        .timeline-item {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 30px;
+        }
+
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 5px;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: var(--primary);
+        }
+
+        .timeline-item:after {
+            content: '';
+            position: absolute;
+            left: 7px;
+            top: 20px;
+            width: 1px;
+            height: calc(100% + 10px);
+            background: #d1d5db;
+        }
+
+        .timeline-item:last-child:after {
+            display: none;
+        }
+
+        /* Shimmer Effect */
+        .shimmer {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 1000px 100%;
+            animation: shimmer 2s infinite;
+        }
+
+        /* 3D Card Effect */
+        .card-3d {
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .card-3d-inner {
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+
+        .card-3d:hover .card-3d-inner {
+            transform: rotateY(180deg);
+        }
+
+        .card-3d-front,
+        .card-3d-back {
+            backface-visibility: hidden;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 1rem;
+        }
+
+        .card-3d-back {
+            transform: rotateY(180deg);
+        }
+
+        /* Stats Counter Animation */
+        .counter {
+            font-variant-numeric: tabular-nums;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    
+    <!-- Navigation (Same as home page) -->
+    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md shadow-sm">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <div
+                        class="w-10 h-10 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 flex items-center justify-center">
+                        <i class="fas fa-brain text-white text-xl"></i>
+                    </div>
+                    <span
+                        class="text-2xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+                        Mindfullintensions</span>
+                </div>
+
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html"
+                        class="text-gray-700 hover:text-indigo-600 font-medium transition-colors duration-300">Home</a>
+                    <a href="about.html" class="text-gray-700 hover:text-indigo-600 font-medium transition-colors duration-30">About Us</a>
+
+                    <div class="relative group">
+                        <button
+                            class="text-gray-700 hover:text-indigo-600 font-medium flex items-center transition-colors duration-300">
+                            Postures <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                        </button>
+                        <div
+                            class="absolute hidden group-hover:block bg-white shadow-xl rounded-lg p-4 mt-2 min-w-[200px] z-10">
+                            <div class="grid grid-cols-2 gap-2">
+                                <button data-filter="type" class="hover:bg-indigo-50 nav-btn p-2 rounded">By
+                                    Type</button>
+                                <button data-filter="benifit" class="hover:bg-indigo-50  nav-btn p- rounded">By
+                                    Benefit</button>
+                                <button data-filter="general"
+                                    class="hover:bg-indigo-50 nav-btn p-2 rounded">General</button>
+                                <button data-filter="Anatomy" class="hover:bg-indigo-50 nav-btn p-2 rounded">By
+                                    Anatomy</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <script>
+                        const button = document.querySelectorAll('.nav-btn')
+                        button.forEach(btn => {
+                            const category = btn.getAttribute('data-filter');
+                            btn.addEventListener('click', () => {
+                                localStorage.setItem('category', category);
+                                window.location.href = "postures.html";
+
+                            });
+                        });
+                    </script>
+                     <a href="/courses.html"
+                     class="text-gray-700 hover:text-indigo-600 font-medium transition-colors duration-300">Courses</a>
+                 <a href="/meditation.html"
+                     class="text-gray-700 hover:text-indigo-600 font-medium transition-colors duration-300">Meditation</a>
+                 <a href="/books.html"
+                     class="text-gray-700 hover:text-indigo-600 font-medium transition-colors duration-300">Books</a>
+                 <a href="/contact.html"
+                     class="text-gray-700 hover:text-indigo-600 font-medium transition-colors duration-300">Contact</a>
+
+                 <a href="postures.html" id="btn-btn"
+                     class="bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-6 py-2 rounded-full font-medium hover:shadow-lg transition-all duration-300 hover:scale-105">
+                     Explore Poses
+                 </a>
+             </div>
+
+             <!-- Mobile Menu Button -->
+             <button id="mobile-menu-btn"
+                 class="md:hidden text-gray-700">
+                 <i class="fas fa-bars text-2xl"></i>
+             </button>
+         </div>
+
+         <!-- Mobile Menu -->
+         <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
+             <div class="flex flex-col space-y-4">
+                 <a href="/index.html"
+                     class="text-gray-700 hover:text-indigo-600 font-medium">Home</a>
+                 <div class="flex flex-col space-y-2">
+                     <a href="/postures.html">Postures</a>
+                     <div class="flex flex-wrap gap-2 ml-4">
+                         <a href="/postures.html"
+                             class="text-sm bg-gray-100 px-3 py-1 rounded-full">By
+                             Type</a>
+                         <a href="/postures.html"
+                             class="text-sm bg-gray-100 px-3 py-1 rounded-full">By
+                             Benefit</a>
+                         <a href="/postures.html"
+                             class="text-sm bg-gray-100 px-3 py-1 rounded-full">General</a>
+                         <a href="/postures.html"
+                             class="text-sm bg-gray-100 px-3 py-1 rounded-full">By
+                             Anatomy</a>
+                     </div>
+                 </div>
+                 <a href="/courses.html"
+                     class="text-gray-700 hover:text-indigo-600 font-medium">Courses</a>
+                 <a href="/meditation.html"
+                     class="text-gray-700 hover:text-indigo-600 font-medium">Meditation</a>
+                 <a href="/books.html"
+                     class="text-gray-700 hover:text-indigo-600 font-medium">Books</a>
+                 <a href="/contact.html"
+                     class="text-gray-700 hover:text-indigo-600 font-medium">Contact</a>
+                 <a href="/postures.html"
+                     class="bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-6 py-2 rounded-full font-medium mt-2">
+                     Explore Poses
+                 </a>
+             </div>
+         </div>
+     </div>
+ </nav>
+     
+    <section class="relative gradient-bg text-white py-16 md:py-24 overflow-hidden">
+        <div class="absolute inset-0 bg-black/20"></div>
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center max-w-4xl mx-auto" data-aos="fade-up">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">Get our Books </h1>
+                <p class="text-xl md:text-2xl mb-8 opacity-90">“Have a question or need help? Feel free to reach out to us.”</p>
+                <p class="text-lg mb-10 opacity-80">We are a passionate team dedicated to helping individuals achieve balance, clarity, and holistic health through the integration of yoga, meditation, and modern wellness practices.</p>
+                <div class="flex flex-wrap justify-center gap-4 mb-10">
+                    <a href="/about.html" class="bg-white text-indigo-600 px-8 py-3 rounded-full font-semibold hover:shadow-xl transition-all duration-300 hover:scale-105">
+                        Our Story
+                    </a>
+                    <a href="/about.html" class="bg-transparent border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white/10 transition-all duration-300">
+                        Meet Our Team
+                    </a>
+                </div>
+            </div>
+        </div>
+</section>
+  <!-- Books Section -->
+  <section class="py-16 md:py-24 bg-gray-50">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-12" data-aos="fade-up">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Recommended
+                Resources</h2>
+            <p class="text-gray-600 max-w-3xl mx-auto">Expand your
+                knowledge with our curated selection of books on yoga,
+                meditation, and wellness.</p>
+        </div>
+
+        <div class="relative">
+            <div class="overflow-x-auto pb-8">
+                <div class="flex space-x-8 min-w-max px-4">
+                    <div
+                        class="card-hover bg-white rounded-2xl shadow-lg p-6 min-w-[280px]"
+                        data-aos="fade-right" data-aos-delay="100">
+                        <div
+                            class="h-48 bg-gradient-to-r from-amber-100 to-amber-50 rounded-xl flex items-center justify-center mb-6">
+                            <i
+                                class="fas fa-book-open text-amber-500 text-7xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">The Yoga Sutras</h3>
+
+                        <p class="text-gray-500 text-sm mb-4">By
+                            Patanjali</p>
+                        <p class="text-gray-600 mb-6">Ancient text on
+                            the theory and <br> practice  of yoga, translated
+                            for modern readers.</p>
+                        <button onclick="window.location.href='contact.html'"
+                            class="w-full bg-gradient-to-r from-amber-500 to-orange-500 text-white py-3 rounded-full font-medium hover:shadow-lg transition-all duration-300">
+                            Buy Now 
+                        </button>
+                    </div>
+
+                    <!-- Book Card 2 -->
+                    <div
+                        class="card-hover bg-white rounded-2xl shadow-lg p-6 min-w-[280px]"
+                        data-aos="fade-right" data-aos-delay="200">
+                        <div
+                            class="h-48 bg-gradient-to-r from-blue-100 to-blue-50 rounded-xl flex items-center justify-center mb-6">
+                            <i
+                                class="fas fa-book text-blue-500 text-7xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">The Miracle
+                            of Mindfulness</h3>
+                        <p class="text-gray-500 text-sm mb-4">By Thich
+                            Nhat Hanh</p>
+                        <p class="text-gray-600 mb-6">A classic guide to
+                            meditation <br> and mindful living in the present
+                            moment.</p>
+                        <button onclick="window.location.href='contact.html'"
+                            class="w-full bg-gradient-to-r from-blue-500 to-cyan-500 text-white py-3 rounded-full font-medium hover:shadow-lg transition-all duration-300">
+                            Buy Now 
+                        </button>
+                    </div>
+
+                    <!-- Book Card 3 -->
+                    <div
+                        class="card-hover bg-white rounded-2xl shadow-lg p-6 min-w-[280px]"
+                        data-aos="fade-right" data-aos-delay="300">
+                        <div
+                            class="h-48 bg-gradient-to-r from-green-100 to-green-50 rounded-xl flex items-center justify-center mb-6">
+                            <i
+                                class="fas fa-book-reader text-green-500 text-7xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Light on
+                            Yoga</h3>
+                        <p class="text-gray-500 text-sm mb-4">By B.K.S.
+                            Iyengar</p>
+                        <p class="text-gray-600 mb-6">The definitive
+                            guide to yoga practice,<br> with detailed
+                            instructions and illustrations.</p>
+                        <button onclick="window.location.href='contact.html'"
+                            class="w-full bg-gradient-to-r from-green-500 to-teal-500 text-white py-3 rounded-full font-medium hover:shadow-lg transition-all duration-300">
+                            Buy Now
+                        </button>
+                    </div>
+
+                    <!-- Book Card 4 -->
+                    <div
+                        class="card-hover bg-white rounded-2xl shadow-lg p-6 min-w-[280px]"
+                        data-aos="fade-right" data-aos-delay="400">
+                        <div
+                            class="h-48 bg-gradient-to-r from-purple-100 to-purple-50 rounded-xl flex items-center justify-center mb-6">
+                            <i
+                                class="fas fa-book-medical text-purple-500 text-7xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">The Body
+                            Keeps the Score</h3>
+                        <p class="text-gray-500 text-sm mb-4">By Bessel
+                            van der Kolk</p>
+                        <p class="text-gray-600 mb-6">Explores how
+                            trauma affects <br>the body and mind, and paths
+                            to recovery.</p>
+                        <button onclick="window.location.href='contact.html'"
+                            class="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white py-3 rounded-full font-medium hover:shadow-lg transition-all duration-300">
+                            Buy Now 
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+         <!-- Footer -->
+         <footer class="bg-gray-900 text-white py-12">
+            <div class="container mx-auto px-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Column 1 -->
+                    <div>
+                        <div class="flex items-center space-x-2 mb-6">
+                            <div
+                                class="w-10 h-10 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 flex items-center justify-center">
+                                <i class="fas fa-brain text-white"></i>
+                            </div>
+                            <span class="text-2xl font-bold">Mindfullintensions</span>
+                        </div>
+                        <p class="text-gray-400 mb-6">Your path to holistic wellness through yoga, meditation, and
+                            mindful
+                            living.</p>
+                        <div class="flex space-x-4">
+                            <a href="#"
+                                class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-indigo-600 transition-colors">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#"
+                                class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-indigo-600 transition-colors">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#"
+                                class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-indigo-600 transition-colors">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#"
+                                class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-indigo-600 transition-colors">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Column 2 -->
+                    <div>
+                        <h4 class="text-lg font-bold mb-6">Quick Links</h4>
+                        <ul class="space-y-3">
+                            <li><a href="index.html" class="text-gray-400 hover:text-white transition-colors">Home</a>
+                            </li>
+                            <li><a href="about.html" class="text-white font-medium transition-colors">About Us</a></li>
+                            <li><a href="/postures.html"
+                                    class="text-gray-400 hover:text-white transition-colors">Postures</a></li>
+                            <li><a href="/courses.html"
+                                    class="text-gray-400 hover:text-white transition-colors">Courses</a></li>
+                            <li><a href="/meditation.html" class="text-gray-400 hover:text-white transition-colors">Meditation</a></li>
+                            <li><a href="/books.html" class="text-gray-400 hover:text-white transition-colors">Books</a></li>
+                            <li><a href="/contact.html" class="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Column 3 -->
+                    <div>
+                        <h4 class="text-lg font-bold mb-6">Resources</h4>
+                        <ul class="space-y-3">
+                            <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Blog</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Research</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Instructors</a>
+                            </li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Community</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-white transition-colors">FAQs</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Column 4 -->
+                    <div>
+                        <h4 class="text-lg font-bold mb-6">Contact Us</h4>
+                        <ul class="space-y-3">
+                            <li class="flex items-center">
+                                <i class="fas fa-map-marker-alt text-indigo-400 mr-3"></i>
+                                <span class="text-gray-400">Jut Line Karachi</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-phone text-indigo-400 mr-3"></i>
+                                <span class="text-gray-400">03482000168</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-envelope text-indigo-400 mr-3"></i>
+                                <span class="text-gray-400">malik-owais-2508d.netlify.app/</span>
+                            </li>
+                        </ul>
+                        <div class="mt-8">
+                            <p class="text-gray-400 mb-3">Subscribe to our newsletter</p>
+                            <div class="flex">
+                                <input type="email" placeholder="xyz@gmail.com"
+                                    class="bg-gray-800 text-white px-4 py-2 rounded-l-lg w-full focus:outline-none">
+                                <button
+                                    class="bg-gradient-to-r from-indigo-500 to-purple-500 px-4 py-2 rounded-r-lg font-medium">
+                                    <i class="fas fa-paper-plane"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500 text-sm">
+                    <p>&copy; 2025 Mindfullintensions. All rights reserved. Designed By <i
+                            class="fas fa-heart text-red-500 mx-1"></i> Malik Owais.</p>
+                </div>
+            </div>
+        </footer>    
+        </body>
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+        
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+            this.innerHTML = menu.classList.contains('hidden') ? 
+                '<i class="fas fa-bars text-2xl"></i>' : 
+                '<i class="fas fa-times text-2xl"></i>';
+        });
+        </script>
+        </html>
+
+        

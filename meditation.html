@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mindfullintensions - Meditation & Mindfulness</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap');
+
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .meditation-card {
+            transition: all 0.3s ease;
+        }
+
+        .meditation-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .breathing-circle {
+            width: 150px;
+            height: 150px;
+            border: 3px solid #6366f1;
+            border-radius: 50%;
+            animation: breathe 8s infinite ease-in-out;
+            margin: 0 auto;
+        }
+
+        @keyframes breathe {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 0.7;
+            }
+
+            50% {
+                transform: scale(1.2);
+                opacity: 1;
+            }
+        }
+
+        .audio-player {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .active {
+            color: #4f46e5;
+            font-weight: 500;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-gray-800">
+    <!-- Navigation (Same as original) -->
+    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md shadow-sm">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 flex items-center justify-center">
+                        <i class="fas fa-brain text-white text-xl"></i>
+                    </div>
+                    <span class="text-2xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">Mindfullintensions</span>
+                </div>
+
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-700 hover:text-indigo-600 font-medium transition-colors duration-300">Home</a>
+                    <a href="about.html" class="text-gray-700 hover:text-indigo-600 font-medium transition-colors duration-300">About Us</a>
+                    <a href="postures.html" class="text-gray-700 hover:text-indigo-600 font-medium transition-colors duration-300">Postures</a>
+                    <a href="courses.html" class="text-gray-700 hover:text-indigo-600 font-medium transition-colors duration-300">Courses</a>
+                    <a href="meditation.html" class="text-gray-700 hover:text-indigo-600 font-medium transition-colors duration-300 active">Meditation</a>
+                    <a href="books.html" class="text-gray-700 hover:text-indigo-600 font-medium transition-colors duration-300">Books</a>
+                    <a href="contact.html" class="text-gray-700 hover:text-indigo-600 font-medium transition-colors duration-300">Contact</a>
+                    <a href="/contact.html" class="bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-6 py-2 rounded-full font-medium hover:shadow-lg transition-all duration-300 hover:scale-105">
+                        Start Meditating
+                    </a>
+                </div>
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-gray-700">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
+                <div class="flex flex-col space-y-4">
+                    <a href="index.html" class="text-gray-700 hover:text-indigo-600 font-medium">Home</a>
+                    <a href="about.html" class="text-gray-700 hover:text-indigo-600 font-medium">About Us</a>
+                    <a href="postures.html" class="text-gray-700 hover:text-indigo-600 font-medium">Postures</a>
+                    <a href="courses.html" class="text-gray-700 hover:text-indigo-600 font-medium">Courses</a>
+                    <a href="meditation.html" class="text-gray-700 hover:text-indigo-600 font-medium active">Meditation</a>
+                    <a href="books.html" class="text-gray-700 hover:text-indigo-600 font-medium">Books</a>
+                    <a href="contact.html" class="text-gray-700 hover:text-indigo-600 font-medium">Contact</a>
+                    <a href="/contact.html" class="bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-6 py-2 rounded-full font-medium mt-2">
+                        Start Meditating
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden bg-gradient-to-br from-indigo-50 to-purple-50 py-16 md:py-24">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row items-center">
+                <div class="lg:w-1/2 mb-12 lg:mb-0" data-aos="fade-right">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-gray-800">
+                        Find Your <span class="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">Inner Peace</span>
+                    </h1>
+                    <p class="text-xl md:text-2xl mb-8 text-gray-600">Guided Meditation for Mind, Body & Soul</p>
+                    <p class="text-lg mb-10 max-w-2xl text-gray-600">
+                        Discover the transformative power of meditation. Reduce stress, improve focus, and cultivate mindfulness with our guided sessions designed for all levels.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="/courses.html" class="bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-8 py-3 rounded-full font-semibold hover:shadow-xl transition-all duration-300 hover:scale-105">
+                            Start Free Session
+                        </a>
+                        <a href="/contact.html" class="bg-transparent border-2 border-indigo-500 text-indigo-600 px-8 py-3 rounded-full font-semibold hover:bg-indigo-50 transition-all duration-300">
+                            Learn More
+                        </a>
+                    </div>
+                </div>
+                <div class="lg:w-1/2 flex justify-center" data-aos="fade-left">
+                    <div class="relative overflow-hidden w-96 h-96 md:w-[28rem] md:h-[28rem] shadow-lg rounded-full">
+                        <img src="/images/meditataions-pic/meditating1.jpg" 
+                             alt="Meditation Image" 
+                             class="w-full h-full object-cover rounded-full">
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Meditation Techniques</h2>
+                <p class="text-gray-600 max-w-3xl mx-auto">Explore different meditation styles to find what resonates with you</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="meditation-card bg-white rounded-2xl shadow-lg p-6 text-center" data-aos="fade-up">
+                    <div class="w-20 h-20 rounded-full bg-gradient-to-r from-blue-100 to-blue-200 flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-mindfulness text-blue-600 text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Mindfulness</h3>
+                    <p class="text-gray-600 mb-4">Present moment awareness without judgment. Perfect for beginners.</p>
+                    <span class="inline-block bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">10-20 mins</span>
+                </div>
+
+                <div class="meditation-card bg-white rounded-2xl shadow-lg p-6 text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-20 h-20 rounded-full bg-gradient-to-r from-purple-100 to-purple-200 flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-headphones text-purple-600 text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Guided</h3>
+                    <p class="text-gray-600 mb-4">Follow along with voice instructions. Great for relaxation.</p>
+                    <span class="inline-block bg-purple-100 text-purple-800 text-sm font-medium px-3 py-1 rounded-full">5-30 mins</span>
+                </div>
+
+                <div class="meditation-card bg-white rounded-2xl shadow-lg p-6 text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-20 h-20 rounded-full bg-gradient-to-r from-green-100 to-green-200 flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-wind text-green-600 text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Breathing</h3>
+                    <p class="text-gray-600 mb-4">Focus on breath patterns. Reduces anxiety and stress.</p>
+                    <span class="inline-block bg-green-100 text-green-800 text-sm font-medium px-3 py-1 rounded-full">5-15 mins</span>
+                </div>
+
+                <div class="meditation-card bg-white rounded-2xl shadow-lg p-6 text-center" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-20 h-20 rounded-full bg-gradient-to-r from-orange-100 to-orange-200 flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-spa text-orange-600 text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Body Scan</h3>
+                    <p class="text-gray-600 mb-4">Progressive relaxation through body awareness.</p>
+                    <span class="inline-block bg-orange-100 text-orange-800 text-sm font-medium px-3 py-1 rounded-full">15-30 mins</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+
+    <section class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Meditation Tips for Beginners</h2>
+                <p class="text-gray-600 max-w-3xl mx-auto">Simple guidelines to start your meditation journey</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-gray-50 rounded-2xl p-6" data-aos="fade-up">
+                    <div class="text-4xl text-indigo-500 mb-4">1</div>
+                    <h3 class="text-xl font-bold mb-3">Start Small</h3>
+                    <p class="text-gray-600">Begin with just 5 minutes daily. Consistency matters more than duration.</p>
+                </div>
+                
+                <div class="bg-gray-50 rounded-2xl p-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="text-4xl text-indigo-500 mb-4">2</div>
+                    <h3 class="text-xl font-bold mb-3">Find Quiet Space</h3>
+                    <p class="text-gray-600">Choose a comfortable, distraction-free environment for practice.</p>
+                </div>
+                
+                <div class="bg-gray-50 rounded-2xl p-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="text-4xl text-indigo-500 mb-4">3</div>
+                    <h3 class="text-xl font-bold mb-3">Focus on Breath</h3>
+                    <p class="text-gray-600">Use your breath as an anchor when your mind wanders.</p>
+                </div>
+                
+                <div class="bg-gray-50 rounded-2xl p-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="text-4xl text-indigo-500 mb-4">4</div>
+                    <h3 class="text-xl font-bold mb-3">Be Patient</h3>
+                    <p class="text-gray-600">Don't judge your practice. Some days will be easier than others.</p>
+                </div>
+                
+                <div class="bg-gray-50 rounded-2xl p-6" data-aos="fade-up" data-aos-delay="400">
+                    <div class="text-4xl text-indigo-500 mb-4">5</div>
+                    <h3 class="text-xl font-bold mb-3">Use Guided Sessions</h3>
+                    <p class="text-gray-600">Follow along with guided meditations until you feel comfortable.</p>
+                </div>
+                
+                <div class="bg-gray-50 rounded-2xl p-6" data-aos="fade-up" data-aos-delay="500">
+                    <div class="text-4xl text-indigo-500 mb-4">6</div>
+                    <h3 class="text-xl font-bold mb-3">Practice Daily</h3>
+                    <p class="text-gray-600">Make meditation a regular habit, like brushing your teeth.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 md:py-24 bg-gradient-to-r from-indigo-600 to-purple-600 text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6" data-aos="fade-up">Ready to Transform Your Mind?</h2>
+            <p class="text-xl mb-10 max-w-2xl mx-auto opacity-90" data-aos="fade-up" data-aos-delay="100">
+                Join thousands who have found peace through meditation
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center" data-aos="fade-up" data-aos-delay="200">
+                <button class="bg-white text-indigo-600 px-8 py-3 rounded-full font-semibold hover:shadow-xl transition-all duration-300 hover:scale-105">
+                    Start 7-Day Free Trial
+                </button>
+                <button class="bg-transparent border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white/10 transition-all duration-300">
+                    Explore All Sessions
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-6">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 flex items-center justify-center">
+                            <i class="fas fa-brain text-white"></i>
+                        </div>
+                        <span class="text-2xl font-bold">Mindfullintensions</span>
+                    </div>
+                    <p class="text-gray-400 mb-6">Your path to holistic wellness through yoga, meditation, and mindful living.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-indigo-600 transition-colors">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-indigo-600 transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-indigo-600 transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-indigo-600 transition-colors">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+
+
+
+                <!-- Column 2 -->
+                <div>
+                    <h4 class="text-lg font-bold mb-6">Quick Links</h4>
+                    <ul class="space-y-3">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white transition-colors">Home</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="postures.html" class="text-gray-400 hover:text-white transition-colors">Postures</a></li>
+                        <li><a href="courses.html" class="text-gray-400 hover:text-white transition-colors">Courses</a></li>
+                        <li><a href="meditation.html" class="text-white font-medium transition-colors">Meditation</a></li>
+                        <li><a href="books.html" class="text-gray-400 hover:text-white transition-colors">Books</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+ <!-- Column 3 -->
+ <div>
+    <h4 class="text-lg font-bold mb-6">Resources</h4>
+    <ul class="space-y-3">
+        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Blog</a></li>
+        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Research</a></li>
+        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Instructors</a>
+        </li>
+        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Community</a></li>
+        <li><a href="#" class="text-gray-400 hover:text-white transition-colors">FAQs</a></li>
+    </ul>
+</div>
+
+                <!-- Column 4 -->
+                <div>
+                    <h4 class="text-lg font-bold mb-6">Contact Us</h4>
+                    <ul class="space-y-3">
+                        <li class="flex items-center">
+                            <i class="fas fa-map-marker-alt text-indigo-400 mr-3"></i>
+                            <span class="text-gray-400">Jut Line Karachi</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone text-indigo-400 mr-3"></i>
+                            <span class="text-gray-400">03482000168</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope text-indigo-400 mr-3"></i>
+                            <span class="text-gray-400">malik-owais-2508d.netlify.app/</span>
+                        </li>
+                    </ul>
+                    <div class="mt-8">
+                        <p class="text-gray-400 mb-3">Subscribe to our newsletter</p>
+                        <div class="flex">
+                            <input type="email" placeholder="xyz@gmail.com" class="bg-gray-800 text-white px-4 py-2 rounded-l-lg w-full focus:outline-none">
+                            <button class="bg-gradient-to-r from-indigo-500 to-purple-500 px-4 py-2 rounded-r-lg font-medium">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500 text-sm">
+                <p>&copy; 2025 Mindfullintensions. All rights reserved. Designed By <i class="fas fa-heart text-red-500 mx-1"></i> Malik Owais.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+
+        document.querySelectorAll('.fa-play').forEach(button => {
+            button.addEventListener('click', function() {
+                const isPlaying = this.classList.contains('fa-pause');
+                this.classList.toggle('fa-play');
+                this.classList.toggle('fa-pause');
+                
+                if(isPlaying) {
+                    this.parentElement.innerHTML = '<i class="fas fa-play"></i> Play Session';
+                } else {
+                    this.parentElement.innerHTML = '<i class="fas fa-pause"></i> Pause Session';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
